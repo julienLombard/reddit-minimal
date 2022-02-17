@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Post from '../../components/Post';
+import Post from '../../components/Post/Post';
 import { getAllPosts } from './allPostsSlice';
 
 const AllPosts = () => {
   const allposts = useSelector(getAllPosts);
-  console.log(allposts);
+  // console.log(allposts);
 
   let renderPosts =
     allposts !== undefined ? (
@@ -16,7 +16,7 @@ const AllPosts = () => {
       </div>
     );
 
-  return <div>{renderPosts}</div>;
+  return <div className="post-listing-container">{renderPosts}</div>;
 };
 
 export default AllPosts;

@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchAsyncAllPosts = createAsyncThunk(
   'allPosts/fetchAsyncAllPosts',
-  async () => {
-    const response = await fetch('https://www.reddit.com/r/pic.json');
+  async (subReddit = 'pic') => {
+    const response = await fetch(`https://www.reddit.com/r/${subReddit}.json`);
     const posts = await response.json();
     return posts.data.children;
   }

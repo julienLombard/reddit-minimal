@@ -13,6 +13,7 @@ const allPostsSlice = createSlice({
   name: 'allPosts',
   initialState: {
     posts: [],
+    subreddit: 'pic',
     isLoading: false,
     hasError: false,
   },
@@ -26,6 +27,7 @@ const allPostsSlice = createSlice({
     [fetchAsyncAllPosts.fulfilled]: (state, { payload }) => {
       console.log('Fetched Successfully!');
       state.posts = payload;
+      state.subreddit = payload[0].data.subreddit;
       state.isLoading = false;
       state.hasError = false;
     },

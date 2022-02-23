@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchAsyncAllPosts } from './features/allPosts/allPostsSlice';
+import { fetchAsyncAllComments } from './features/allComments/allCommentsSlice';
 import AllPosts from './features/allPosts/AllPosts';
 import SubReddits from './components/SubReddits/SubReddits';
 import './App.css';
@@ -10,6 +11,10 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAsyncAllPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchAsyncAllComments());
   }, [dispatch]);
 
   return (

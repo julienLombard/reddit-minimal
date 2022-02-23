@@ -20,19 +20,19 @@ const allPostsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchAsyncAllPosts.pending]: (state) => {
-      console.log('Pending');
+      console.log('Posts - Pending');
       state.isLoading = true;
       state.hasError = false;
     },
     [fetchAsyncAllPosts.fulfilled]: (state, { payload }) => {
-      console.log('Fetched Successfully!');
+      console.log('Posts - Fetched Successfully!');
       state.posts = payload;
       state.subreddit = payload[0].data.subreddit;
       state.isLoading = false;
       state.hasError = false;
     },
     [fetchAsyncAllPosts.rejected]: (state) => {
-      console.log('Rejected!');
+      console.log('Posts - Rejected!');
       state.isLoading = false;
       state.hasError = true;
     },

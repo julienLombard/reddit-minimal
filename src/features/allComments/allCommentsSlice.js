@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 export const fetchAsyncAllComments = createAsyncThunk(
   'allPosts/fetchAsyncComments',
   async (permalink) => {
-    if (permalink) {
+    if (permalink !== undefined) {
       const response = await fetch(`https://www.reddit.com${permalink}.json`);
       const comments = await response.json();
       return {

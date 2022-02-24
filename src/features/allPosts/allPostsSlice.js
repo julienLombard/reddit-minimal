@@ -9,11 +9,24 @@ export const fetchAsyncAllPosts = createAsyncThunk(
   }
 );
 
+export const fetchAsyncSearchedPosts = createAsyncThunk(
+  'allPosts/fetchAsyncSearchedPosts',
+  async (request) => {
+    if (request !== undefined) {
+      const response = await fetch(
+        `https://www.reddit.com/search.json?q=cake%20recipes`
+      );
+      const posts = await response.json();
+      return posts.data.children;
+    }
+  }
+);
+
 const allPostsSlice = createSlice({
   name: 'allPosts',
   initialState: {
     posts: [],
-    subreddit: 'pic',
+    subreddit: '',
     isLoading: false,
     hasError: false,
   },
@@ -33,6 +46,23 @@ const allPostsSlice = createSlice({
     },
     [fetchAsyncAllPosts.rejected]: (state) => {
       console.log('Posts - Rejected!');
+      state.isLoading = false;
+      state.hasError = true;
+    },
+    [fetchAsyncSearchedPosts.pending]: (state) => {
+      console.log('Searched Posts - Pending');
+      state.isLoading = true;
+      state.hasError = false;
+    },
+    [fetchAsyncSearchedPosts.fulfilled]: (state, { payload }) => {
+      console.log('Searched Posts - Fetched Successfully!');
+      state.posts = payload;
+      state.subreddit = '';
+      state.isLoading = false;
+      state.hasError = false;
+    },
+    [fetchAsyncSearchedPosts.rejected]: (state) => {
+      console.log('Searched Posts - Rejected!');
       state.isLoading = false;
       state.hasError = true;
     },

@@ -6,7 +6,6 @@ import { getAllComments } from './allCommentsSlice';
 const AllComments = (props) => {
   const { id } = props;
   const allComments = useSelector(getAllComments);
-  //   console.log(allComments);
 
   let renderComments =
     allComments !== undefined

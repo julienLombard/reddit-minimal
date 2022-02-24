@@ -5,12 +5,12 @@ import { getAllComments } from './allCommentsSlice';
 
 const AllComments = (props) => {
   const { id } = props;
-  const allcomments = useSelector(getAllComments);
-  //   console.log(allcomments);
+  const allComments = useSelector(getAllComments);
+  //   console.log(allComments);
 
   let renderComments =
-    allcomments !== undefined
-      ? allcomments.map((commentList) =>
+    allComments !== undefined
+      ? allComments.map((commentList) =>
           id === commentList.id
             ? commentList.comments.map((comment, index) => (
                 <Comment key={index} data={comment.data} />

@@ -14,7 +14,7 @@ export const fetchAsyncSearchedPosts = createAsyncThunk(
   async (request) => {
     if (request !== undefined) {
       const response = await fetch(
-        `https://www.reddit.com/search.json?q=cake%20recipes`
+        `https://www.reddit.com/search.json?q=${request}`
       );
       const posts = await response.json();
       return posts.data.children;
